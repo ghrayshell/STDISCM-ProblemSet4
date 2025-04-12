@@ -1,0 +1,31 @@
+version: '3'
+services:
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "4001:4001"
+
+  course-service:
+    build: ./course-service
+    ports:
+      - "4002:4002"
+
+  enroll-service:
+    build: ./enroll-service
+    ports:
+      - "4003:4003"
+
+  grades-service:
+    build: ./grades-service
+    ports:
+      - "4004:4004"
+
+  frontend-node:
+    build: ./frontend-node
+    ports:
+      - "5173:5173"
+    depends_on:
+      - auth-service
+      - course-service
+      - enroll-service
+      - grades-service
